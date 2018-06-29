@@ -17,7 +17,20 @@ def decide(file_name, year):
     return result
     
 def get_latest(file_name):
-    
+    file = open(file_name)
+    lines = file.readlines()
+    file.close()
+    years = []
+    titles = []
+    for i in range(len(lines)):
+        lines[i] = lines[i].split("\t")
+        years.append(lines[i][2])   
+        titles.append(lines[i][0])
+        latest_year = years.index(max(years))
+        latest_game_title = titles[years.index(max(years))]
+    return latest_game_title
+        
+
 
 
     
