@@ -1,9 +1,7 @@
 def count_games(file_name):
-    file = open(file_name)
-    how_many = len(file.readlines())
-    file.close()
+    with open (file_name, "r") as file:
+        how_many = len(file.readlines())
     return how_many
-    
 
 def decide(file_name, year):
     result = False
@@ -13,13 +11,12 @@ def decide(file_name, year):
         result = True
     else:
         result = False
-    file.close()
-    return result
     
+    return result
+
 def get_latest(file_name):
-    file = open(file_name)
-    lines = file.readlines()
-    file.close()
+    with open (file_name, "r") as file:
+        lines = file.readlines()
     years = []
     titles = []
     for i in range(len(lines)):
@@ -29,13 +26,25 @@ def get_latest(file_name):
         latest_year = years.index(max(years))
         latest_game_title = titles[years.index(max(years))]
     return latest_game_title
-        
 
-
-
-    
 def count_by_genre(file_name, genre):
-    pass
-    
+    with open (file_name, "r") as file:
+        lines = file.readlines()
+    genres = []
+    for i in range(len(lines)):
+        lines[i] = lines[i].split("\t")
+        genres.append(lines[i][3])
+    return genres.count(genre)
+
 def get_line_number_by_title(file_name, title):
-    pass
+    with open (file_name, "r") as file:
+        lines = file.readlines()
+    for i in range(len(lines)):
+        lines[i] = lines[i].split("\t")
+        try:
+            if title in lines[i]:
+                line_number = lines.index(lines[i])
+                line_number += 1
+        except:
+            raise ValueError
+    return line_number    
