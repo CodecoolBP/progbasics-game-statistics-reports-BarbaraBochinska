@@ -38,13 +38,13 @@ def count_by_genre(file_name, genre):
 
 def get_line_number_by_title(file_name, title):
     with open (file_name, "r") as file:
-        lines = file.readlines()
-    for i in range(len(lines)):
-        lines[i] = lines[i].split("\t")
-        try:
-            if title in lines[i]:
-                line_number = lines.index(lines[i])
-                line_number += 1
-        except:
-            raise ValueError
-    return line_number    
+        titles = file.readlines()
+    titles2 = []
+    for i in range(len(titles)):
+        titles[i] = titles[i].split("\t")
+        titles2.append(titles[i][0])
+    try:
+        line_number = titles2.index(title)
+        return line_number + 1
+    except ValueError:
+        raise ValueError

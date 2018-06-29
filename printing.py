@@ -33,11 +33,11 @@ def menu():
     print("4. How many games do we have by genre?")
     print("5. What is the line number of the given game?")
     print("-----To exit input q------")
-    
+
 menu()
 user_input = ""
 while user_input != "q":
-    user_input = input("Input number from 1 to 5 to ask a question: ")
+    user_input = input("\nInput number from 1 to 5 to ask a question: >>")
     if user_input == "1":
         how_many_games()
 
