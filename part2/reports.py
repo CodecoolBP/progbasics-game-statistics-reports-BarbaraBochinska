@@ -53,5 +53,16 @@ def get_date_avg(file_name):
         release_dates.append(int(lines[i][2]))
     sum_dates = sum(release_dates)
     avg_release_float = sum_dates / len(lines)
-    avg_release= int(round(avg_release_float))
+    avg_release = round(avg_release_float)
     return avg_release
+
+def get_game(file_name, title):
+    with open(file_name, "r") as file:
+        read_file = file.read()
+        lines = read_file.split("\n")
+    for i in range(len(lines)):
+        lines[i] = lines[i].split("\t")
+        if title == lines[i][0]:
+            chosen_title = lines[i]
+            formatted_chosen_title = [chosen_title[0],float(chosen_title[1]),int(chosen_title[2]),chosen_title[3],chosen_title[4]]
+    return formatted_chosen_title   
